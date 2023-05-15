@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Homepage from './modules/product/pages/Homepage';
+import Products from './modules/product/pages/Products';
+import AdminProducts from './modules/product/pages/AdminProducts';
+import AddProduct from './modules/product/pages/AddProduct';
+import ViewProduct from './modules/product/pages/ViewProduct';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import EditProduct from './modules/product/pages/EditProduct';
 
-function App() {
+
+const App:React.FC = () => {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Homepage/>}></Route>
+        <Route path='/products' element={<Products/>}></Route>
+        <Route path='/admin/products' element={<AdminProducts/>}></Route>
+        <Route path='/admin/addroduct' element={<AddProduct/>}></Route>
+        <Route path='/admin/update/:id' element={<EditProduct/>}></Route>
+        <Route path='/view/:id' element={<ViewProduct/>}></Route>
+      </Routes>
+    </BrowserRouter>
+    </>
   );
 }
 
