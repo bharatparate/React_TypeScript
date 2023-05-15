@@ -9,7 +9,7 @@ export const getContactAction: any = createAsyncThunk( "product/getAllProductAct
       let response = await ProductService.getAllProducts();
       return response.data;
     } catch (error: any) {
-      if (!error.response) {
+      if (!error.response) { 
         throw error;
       } 
       return rejectWithValue(error.response.data)
