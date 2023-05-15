@@ -5,8 +5,11 @@ Download this folder and just run npm start inside src Folder
 ## Available Scripts
 
 "axios": "^1.3.4",
+
 "bootstrap": "^5.3.0-alpha2",
+
 "bootstrap-icons": "^1.10.3",
+
 "react": "^18.2.0",
 "react-dom": "^18.2.0",
 "react-paginate": "^8.2.0",
