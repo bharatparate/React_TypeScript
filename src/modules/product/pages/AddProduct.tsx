@@ -23,9 +23,9 @@ const AddProduct: React.FC = () => {
 
   const [product, setProduct] = useState<IProduct>({
     name:"",
-    category:"",
+    categoryId:"", 
     description:"",
-    imgurl:"",
+    imgUrl:"", 
     price:"",
     quantity:""
   });
@@ -51,26 +51,15 @@ const AddProduct: React.FC = () => {
     if (
       !product.price ||
       !product.quantity ||
-      !product.imgurl ||
+      !product.imgUrl ||
       !product.description ||
-      !product.category
+      !product.categoryId
     ) {
       toast.error("Please Provide All the Details", {
         position: toast.POSITION.TOP_RIGHT,
       });
     } else {
-      if (!id) {
-        dispatch(productActions.createContactAction(product))
-      } else {
-        ProductService.editProduct(product, id)
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            toast.error(error.response.data);
-          }); 
-        toast.success("Product Edited Successfully");
-      }
+       dispatch(productActions.createContactAction(product))
 
       setTimeout(() => {
         navigate("/admin/products");
@@ -80,9 +69,9 @@ const AddProduct: React.FC = () => {
 
 
 
-  useEffect(() => {
-    dispatch(productActions.editContactAction(product, id))
-  }, [id]);
+  // useEffect(() => {
+  //   dispatch(productActions.editContactAction(product, id))
+  // }, [id]);
 
   useEffect(() => {
     ProductService.getAllCategory().then((response) => {
@@ -102,8 +91,8 @@ const AddProduct: React.FC = () => {
           <div className="formgroup mb-3">
             <input
               onChange={(e) => InputOnChange(e)}
-              value={product.imgurl || ""}
-              name="imgurl"
+              value={product.imgUrl || ""}
+              name="imgUrl"
               type="text"
               className="form-control"
               placeholder="img URL"
@@ -142,15 +131,15 @@ const AddProduct: React.FC = () => {
           <div className="formgroup mb-3">
             <select
               className="form-control"
-              value={product.category || ""}
+              value={product.categoryId || ""}
               name={"category"}
               onChange={(e) => InputOnChange(e)}
             >
               <option>Select Category</option>
               {categoryddl.map((category, index) => {
                 return (
-                  <option key={category.id} value={category.category || ""}>
-                    {category.category}
+                  <option key={category._id} value={category._id || ""}>
+                    {category._id}
                   </option>
                 );
               })}

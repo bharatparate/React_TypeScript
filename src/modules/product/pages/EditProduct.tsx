@@ -24,9 +24,9 @@ const EditProduct: React.FC = () => {
 
   const [localProduct, setLocalProduct] = useState<IProduct>({
     name: "",
-    category: "",
+    categoryId: "",
     description: "",
-    imgurl: "",
+    imgUrl: "",
     price: "",
     quantity: "",
   });
@@ -61,9 +61,9 @@ const EditProduct: React.FC = () => {
     if (
       !localProduct.price ||
       !localProduct.quantity ||
-      !localProduct.imgurl ||
+      !localProduct.imgUrl ||
       !localProduct.description ||
-      !localProduct.category
+      !localProduct.categoryId
     ) {
       toast.error("Please Provide All the Details", {
         position: toast.POSITION.TOP_RIGHT,
@@ -100,9 +100,9 @@ const EditProduct: React.FC = () => {
       setLocalProduct({
         ...localProduct,
         name: product[0].name,
-        category: product[0].category,
+        categoryId: product[0].categoryId,
         description: product[0].description,
-        imgurl: product[0].imgurl,
+        imgUrl: product[0].imgUrl,
         price: product[0].price,
         quantity: product[0].quantity,
       });
@@ -127,7 +127,7 @@ const EditProduct: React.FC = () => {
           <div className="formgroup mb-3">
             <input
               onChange={(e) => InputOnChange(e)}
-              value={localProduct.imgurl || ""}
+              value={localProduct.imgUrl || ""}
               name="imgurl"
               type="text"
               className="form-control"
@@ -167,15 +167,15 @@ const EditProduct: React.FC = () => {
           <div className="formgroup mb-3">
             <select
               className="form-control"
-              value={localProduct.category || ""}
+              value={localProduct.categoryId || ""}
               name={"category"}
               onChange={(e) => InputOnChange(e)}
             >
               <option>Select Category</option>
               {categoryddl.map((category, index) => {
                 return (
-                  <option key={category.id} value={category.category || ""}>
-                    {category.category}
+                  <option key={category._id} value={category.name || ""}>
+                    {category.name}
                   </option>
                 );
               })}

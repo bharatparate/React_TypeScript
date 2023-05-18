@@ -6,7 +6,6 @@ import Heading from "../../../components/Heading";
 import Loader from "../../../components/Loader";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { ProductService } from "../services/productService";
 import { AppDispatch, RootState, useAppDispatch } from "../../../redux/store";
 import * as  productActions from "../../../redux/product/product.action"
 import * as  productreducer from "../../../redux/product/product.reducer"
@@ -176,28 +175,28 @@ return store[productreducer.productFeatureKey]
                 })
                 .map((product, index) => {
                   return (
-                    <tr key={product.id}>
+                    <tr key={product._id}>
                       <td>
                         <img
-                          src={product.imgurl}
+                          src={product.imgUrl}
                           style={{ width: 50, height: 50 }}
                         />
                       </td>
                       <td>{product.name}</td>
                       <td>{product.price}</td>
                       <td>{product.quantity}</td>
-                      <td>{product.category}</td>
+                      <td>{product.categoryId}</td>
                       <td>{product.description}</td>
                       <td>
                         <Link
-                          to={`/admin/update/${product.id}`}
+                          to={`/admin/update/${product._id}`}
                           className="btn btn-warning"
                         >
                           Edit
                         </Link>
                         <button
                           className="btn btn-danger"
-                          onClick={() => deleteContact(product.id)}
+                          onClick={() => deleteContact(product._id)}
                         >
                           Delete
                         </button>

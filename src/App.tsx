@@ -9,6 +9,8 @@ import ViewProduct from './modules/product/pages/ViewProduct';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import EditProduct from './modules/product/pages/EditProduct';
+import UserLogin from './modules/user/pages/UserLogin';
+import UserRegister from './modules/user/pages/UserRegister';
 
 
 const App:React.FC = () => {
@@ -23,6 +25,8 @@ const App:React.FC = () => {
         <Route path='/admin/addroduct' element={<AddProduct/>}></Route>
         <Route path='/admin/update/:id' element={<EditProduct/>}></Route>
         <Route path='/view/:id' element={<ViewProduct/>}></Route>
+        <Route path='/user/login' element={<UserLogin/>}></Route>
+        <Route path='/user/Register' element={<UserRegister/>}></Route>
       </Routes>
     </BrowserRouter>
     </>

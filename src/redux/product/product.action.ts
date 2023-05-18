@@ -19,7 +19,7 @@ export const getContactAction: any = createAsyncThunk( "product/getAllProductAct
 );
 
 
-export const getsingleProductAction: any = createAsyncThunk('contacts/getsingleProductAction',
+export const getsingleProductAction: any = createAsyncThunk('product/getsingleProductAction',
     async (payload: { id: string }, {rejectWithValue}): Promise<IProduct | any> => {
         try {
             const {id} = payload;

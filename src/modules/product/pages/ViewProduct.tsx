@@ -28,10 +28,10 @@ const ViewProduct: React.FC = () => {
       <div className="container">
       {loading && <Loader />}
       {errorMessage && <h1 className="text-danger">{errorMessage}</h1>}
-        <p>{product.imgurl}</p>
+        <p>{product.imgUrl}</p>
         <p>{product.name}</p>
         <p>{product.price}</p>
-        <p>{product.category}</p>
+        <p>{product.categoryId}</p>
         <p>{product.description}</p>
         <Link to="/products" className="btn btn-warning">
           Back

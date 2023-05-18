@@ -1,14 +1,20 @@
 export interface IProduct{
-    id?: string;
-    imgurl: string
-    name: string;
-    price: string,
+    name : string;
+    user?: string;
+    imgUrl: string;
+    categoryId: string;
+    description: string;
+    price: string;
     quantity: string;
-    category: string;
-    description: string;  
+    _id? : string;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 export interface ICategory{
-    id?:string;
-    category: string
+    name : string;
+    _id? : string;
+    user?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 }

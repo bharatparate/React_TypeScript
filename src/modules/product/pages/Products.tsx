@@ -41,13 +41,13 @@ return store[productreducer.productFeatureKey]
             return (
                 <div className="col-sm-3" key={index}>
                 <div className="card">
-                <img alt="" src={product.imgurl} className="img-fluid"></img>
+                <img alt="" src={product.imgUrl} className="img-fluid"></img>
                 <div className="card-body">
                     <h2>{product.name}</h2>
                     <p>{product.price}</p>
                     <p>{product.quantity}</p>
                     <p>{product.description}</p>
-                    <p><Link to={`/view/${product.id}`}>View</Link></p>
+                    <p><Link to={`/view/${product._id}`}>View</Link></p>
                 </div>
                 </div>
                 
