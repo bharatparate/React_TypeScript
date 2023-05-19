@@ -1,6 +1,6 @@
 export class TokenUtil{
 
-    private static TOKEN_KEY:string = "product-tiken";
+    private static TOKEN_KEY:string = "product-token";
 
     public static saveTokenToSession(token:string){
         sessionStorage.setItem(this.TOKEN_KEY, token);

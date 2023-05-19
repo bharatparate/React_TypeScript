@@ -122,7 +122,7 @@ return store[productreducer.productFeatureKey]
 
       <div className="container">
         <Heading heading={"Admin Products"} />
-        <ToastContainer />
+        
         {loading && <Loader />}
         <Link to="/admin/addroduct">
           <button className="btn btn-success">Add</button>

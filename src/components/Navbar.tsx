@@ -1,12 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { TokenUtil } from "../util/TokenUtil";
+import { AppDispatch, useAppDispatch } from "../redux/store";
+import { logOutUSerAction } from "../redux/users/user.reducer";
 
 interface IProps{
     navbar: string
 }
 
 const App: React.FC<IProps> = (props) => {
+  const dispatch: AppDispatch = useAppDispatch();
+  const clickLogOff = () =>{
+    dispatch({
+      type: `${logOutUSerAction}`,
+      payload: {}
+
+    })
+  }
+
   return (
+
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
@@ -41,9 +54,14 @@ const App: React.FC<IProps> = (props) => {
                   Admin
                 </Link>
               </li>
-              <li className="nav-item">
-                <a className="nav-link disabled">Disabled</a>
+              {
+                TokenUtil.isLoggedIn() ?  <li className="nav-item"> <Link to="/user/login" className="nav-link"><span onClick={clickLogOff}>Logout</span></Link>
+              </li> : <li className="nav-item">
+              <Link to="/user/login" className="nav-link">Login</Link>
               </li>
+              }
+             
+              
             </ul>
           </div>
         </div>

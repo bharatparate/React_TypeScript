@@ -3,6 +3,7 @@ import { IProduct } from "../../modules/product/models/IProducts";
 import * as userAction from "./user.action"
 import { IUser } from "../../modules/user/models/IUser";
 import { TokenUtil } from "../../util/TokenUtil";
+import { ToastUtil } from "../../util/ToastUtil";
 
 export const userFeatureKey = "userFeature";
 
@@ -27,18 +28,27 @@ export const userSlice = createSlice({
     
     name: "userSlice",
     initialState: inicialState,
-    reducers:{},
+    reducers:{
+        logOutUSerAction: (state, action) => {
+            state.user = {} as IUser;
+            state.token = null
+            state.isAuth= false;
+            TokenUtil.removeTokenFromSession();
+        }
+    },
     extraReducers: (builder)=>{
         
         builder.addCase(userAction.registerUserAction.pending, (state, action)=>{
             state.loading =true;
         }).addCase(userAction.registerUserAction.fulfilled, (state, action)=>{
             state.loading =false;
-
+            ToastUtil.displaySuccessMessage('Registration Successful')
         }).addCase(userAction.registerUserAction.rejected, (state, action)=>{
             state.loading =false;
+           
             if(isRejectedWithValue(action)){
-                state.errorMessage = action.payload
+                state.errorMessage = action.payload;
+                ToastUtil.displayErrorMessage('Registration Failed')
             }
         })
 
@@ -52,17 +62,20 @@ export const userSlice = createSlice({
                 state.user = action.payload.user;
                 state.token = action.payload.token;
                 state.isAuth= true;
-                TokenUtil.saveTokenToSession(action.payload.token)
+                TokenUtil.saveTokenToSession(action.payload.token);
+                ToastUtil.displaySuccessMessage('Login Successful');
             }
             
         }).addCase(userAction.loginUserAction.rejected, (state, action)=>{
             state.loading =false;
+          
             if(isRejectedWithValue(action)){
                 state.user = {} as IUser;
                 state.token = null;
                 state.isAuth= false;
                 TokenUtil.removeTokenFromSession();
                 state.errorMessage = action.payload;
+                ToastUtil.displayErrorMessage('Login Failed')
             }
         })
 
@@ -81,7 +94,6 @@ export const userSlice = createSlice({
             state.user = {} as IUser;
             state.isAuth= false;
             if(isRejectedWithValue(action)){
-                
                 state.errorMessage = action.payload;
             }
         })
@@ -90,3 +102,5 @@ export const userSlice = createSlice({
         
     }
     });
+
+    export const {logOutUSerAction} =  userSlice.actions;

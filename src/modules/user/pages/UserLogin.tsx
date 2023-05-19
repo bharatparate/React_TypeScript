@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Navbar from '../../../components/Navbar';
 import { AppDispatch, useAppDispatch } from '../../../redux/store';
 import * as userActions from '../../../redux/users/user.action'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IUser } from '../models/IUser';
-
+import { ToastUtil } from '../../../util/ToastUtil';
 
 const UserLogin:React.FC = () => {
  
@@ -51,6 +51,9 @@ const handleSubmit = (event:React.FormEvent<HTMLFormElement>) =>{
                 <div className="col-sm-2">
                     <input type="submit" className="btn btn-success" value={'login'} />
                 </div>
+            </div>
+            <div className='row'>
+            Dont have an account?  <Link to="/user/register">Register </Link>
             </div>
             </form>
          </div>

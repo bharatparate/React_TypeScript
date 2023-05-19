@@ -5,8 +5,6 @@ import { default as axios } from "axios";
 import Heading from "../../../components/Heading";
 import Loader from "../../../components/Loader";
 import { Link } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import { ProductService } from "../services/productService";
 import { AppDispatch, RootState, useAppDispatch } from "../../../redux/store";
 import * as  productActions from "../../../redux/product/product.action"
 import * as  productreducer from "../../../redux/product/product.reducer"
@@ -33,9 +31,9 @@ return store[productreducer.productFeatureKey]
       <div className="container">
       <Heading heading={'Products'} />
 
-      <div className="row">
+      <div className="row"> 
       {loading && <Loader />}
-      <ToastContainer />
+
     
         {product && product.length>0 ?  product.map((product, index) => {
             return (

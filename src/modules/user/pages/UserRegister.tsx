@@ -29,7 +29,7 @@ const updateInput = (event: React.ChangeEvent<HTMLInputElement>) =>{
 const handleSubmit = (event:React.FormEvent<HTMLFormElement>) =>{
     event.preventDefault();
     dispatch(userActions.registerUserAction({user:user})).then((response:any)=>{
-        if(response){
+        if(response && !response.error){
             navigate('/user/login')
         }
     })
